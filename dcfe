@@ -1,0 +1,45 @@
+#!/bin/sh
+edit="leafpad"
+echo "Deb control file editor by Starwarsfan2099"
+echo "Version 1.5"
+echo "Running..."
+deb=$1
+b=20
+num1=0
+num2=0
+echo "looking at files..."
+if [ -z "$1" ]
+  then
+    echo "No file supplied!"
+    echo "Example, dcfe file.deb"
+    exit 1
+fi
+echo "==============="
+echo "DEBUG: DEB: $deb"
+echo "==============="
+ar x $deb
+echo "    "
+echo "==============="
+locate data.tar.lvm | grep ^$homedir
+locate preinst | grep ^$homedir
+locate postinst | grep ^$homedir
+locate prerm | grep ^$homedir
+echo "==============="
+tar xvfz control.tar.gz
+$edit control
+echo 2.0 debian-binary
+tar czvf control.tar.gz control postinst preinst prerm postrm
+rm $deb
+ar -r $deb debian-binary control.tar.gz data.tar.gz
+echo "===========DEBUG Stuff, Ignore...==============="
+rm control
+rm control.tar.gz
+rm data.tar.gz
+rm debian-binary
+rm postinst
+rm preinst
+rm postrm
+rm prerm
+echo "================================================"
+echo "DEBUG: DEB: Build Sucsess!"
+done
