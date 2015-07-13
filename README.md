@@ -1,1 +1,1 @@
-Deb package control file editor for multiple linux distrobutions.
+This is a small linux application for quickly editing the control file for a .deb package. Only software required is a .deb package and a text editor. To change what text editor you use simply open the dcfe file and change it. The default is leafpad. to install simply place dcfe in /usr/bin. To run the tool, cd into the directory where the deb is, then run "dcfe file.deb" where file.deb is the deb you want to edit.
